@@ -1,0 +1,1 @@
+watchman app/coffee ./bin/transpile

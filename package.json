@@ -1,0 +1,10 @@
+{
+  "name": "Cave",
+  "description": "The Cave",
+  "version": "1.0.0",
+  "dependencies": {
+    "watchman": "0.1.4",
+    "coffee-script": "1.1.2"
+  },
+  "engines": { "node": "0.4.9" }
+}
