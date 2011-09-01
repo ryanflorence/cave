@@ -1,17 +1,24 @@
-require ['canvas', 'ship', 'cave', 'collision'], (canvas, ship, cave, collision)->
+require ['score', 'canvas', 'ship', 'cave', 'collision'], (score, canvas, ship, cave, collision)->
   timer = null
   down = true
 
   canvas.init()
   canvas.step()
+  score.init()
   ship.reverse()
 
-  collision.callback = ->
+  reset = ->
     stop()
+    detach()
     cave.reset()
     ship.reset()
-    detach()
-    setTimeout attach, 1000
+    setTimeout ->
+      score.reset()
+      canvas.step()
+      attach()
+    , 1000
+
+  collision.callback = reset
 
   keydown = (event) ->
     start() if timer is null
@@ -37,6 +44,7 @@ require ['canvas', 'ship', 'cave', 'collision'], (canvas, ship, cave, collision)
     timer = setInterval ->
       canvas.step()
       collision.check()
+      score.up()
     , 1000 / 77
 
   stop = ->

@@ -1,17 +1,23 @@
-require(['canvas', 'ship', 'cave', 'collision'], function(canvas, ship, cave, collision) {
-  var attach, detach, down, keydown, keyup, start, stop, timer;
+require(['score', 'canvas', 'ship', 'cave', 'collision'], function(score, canvas, ship, cave, collision) {
+  var attach, detach, down, keydown, keyup, reset, start, stop, timer;
   timer = null;
   down = true;
   canvas.init();
   canvas.step();
+  score.init();
   ship.reverse();
-  collision.callback = function() {
+  reset = function() {
     stop();
+    detach();
     cave.reset();
     ship.reset();
-    detach();
-    return setTimeout(attach, 1000);
+    return setTimeout(function() {
+      score.reset();
+      canvas.step();
+      return attach();
+    }, 1000);
   };
+  collision.callback = reset;
   keydown = function(event) {
     if (timer === null) {
       start();
@@ -43,7 +49,8 @@ require(['canvas', 'ship', 'cave', 'collision'], function(canvas, ship, cave, co
   start = function() {
     return timer = setInterval(function() {
       canvas.step();
-      return collision.check();
+      collision.check();
+      return score.up();
     }, 1000 / 77);
   };
   stop = function() {

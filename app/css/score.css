@@ -1,0 +1,10 @@
+/*@import url(http://fonts.googleapis.com/css?family=VT323);*/
+.score {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #fff;
+  font-family: monospace;
+  font-size: 40px;
+  text-align: right;
+}
