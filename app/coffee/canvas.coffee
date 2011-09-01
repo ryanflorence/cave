@@ -1,4 +1,11 @@
-define ['ship'], (ship) ->
+define [
+  'ship'
+  'cave'
+], (ship, cave) ->
+
+  height: window.innerHeight
+  width: window.innerWidth
+
   init: ->
     @canvas = document.createElement 'canvas'
     @context = @canvas.getContext '2d'
@@ -7,14 +14,16 @@ define ['ship'], (ship) ->
 
     document.body.appendChild @canvas
     ship.context = @context
+    cave.context = @context
 
   setAttrs: ->
-    @canvas.setAttribute 'width', 600
-    @canvas.setAttribute 'height', 300
+    @canvas.setAttribute 'width', @width
+    @canvas.setAttribute 'height', @height
 
   step: (x) ->
     @context.save()
-    @context.fillStyle = "rgba(255, 255, 255, 1)"
-    @context.fillRect 0, 0, 600, 300
+    @context.fillStyle = "rgba(10, 10, 10, 1)"
+    @context.fillRect 0, 0, @width, @height
     ship.draw()
+    cave.draw()
     @context.restore()

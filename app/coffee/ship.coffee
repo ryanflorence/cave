@@ -1,15 +1,20 @@
-# file:///Users/rpflo/Code/playground/cave/app/index.html
-define [], () ->
+define ->
+  ship =
+    draw: ->
+      @y += @vy
+      @vy += @a
+      @context.fillStyle = "rgba(255, 255, 255, 0.75)"
+      @coords = x: @x, y: @y, h: 10, w: 10
+      @context.fillRect @x, @y, 10, 10
 
-  y: 150
-  vy: 0.25
-  a: 0.1
+    reverse: ->
+      @a = -@a
 
-  draw: ->
-    @y += @vy
-    @vy += @a
-    @context.fillStyle = "rgba(0, 0, 0, 1)"
-    @context.fillRect 200, @y, 10, 10
+    reset: ->
+      @y = window.innerHeight / 2
+      @vy = 0.1
+      @a = 0.15
+      @x = parseInt (window.innerWidth / 3).toFixed()
+      @
 
-  reverse: ->
-    @a = -@a
+  ship.reset()
