@@ -53,4 +53,7 @@ require ['score', 'canvas', 'ship', 'cave', 'collision'], (score, canvas, ship, 
     timer = null
 
   require.ready ->
-    setTimeout attach, 500
+    setTimeout ->
+      alert "Hold the UP arrow to control the ship.  Spacebar to pause."
+      attach()
+    , 500

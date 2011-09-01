@@ -59,6 +59,9 @@ require(['score', 'canvas', 'ship', 'cave', 'collision'], function(score, canvas
     return timer = null;
   };
   return require.ready(function() {
-    return setTimeout(attach, 500);
+    return setTimeout(function() {
+      alert("Hold the UP arrow to control the ship.  Spacebar to pause.");
+      return attach();
+    }, 500);
   });
 });
