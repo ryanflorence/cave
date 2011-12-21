@@ -1,4 +1,10 @@
-require ['score', 'canvas', 'ship', 'cave', 'collision'], (score, canvas, ship, cave, collision)->
+require [
+  'score'
+  'canvas'
+  'ship'
+  'cave'
+  'collision'
+], (score, canvas, ship, cave, collision) ->
   timer = null
   down = true
 
